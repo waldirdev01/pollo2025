@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "638748047552",
+    "project_id": "pollo-2025-f4d01",
+    "storage_bucket": "pollo-2025-f4d01.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:638748047552:android:4d9fcd09ae0256229f1525",
+        "android_client_info": {
+          "package_name": "com.waldirdev01.pollo2025"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDfah7ygplX_Kr0uL_ziVR0hYd9oV-mYG0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
