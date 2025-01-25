@@ -1,51 +1,49 @@
 {
-  "flutter": {
-    "platforms": {
-      "android": {
-        "default": {
-          "projectId": "pollo-2025-f4d01",
-          "appId": "1:638748047552:android:4d9fcd09ae0256229f1525",
-          "fileOutput": "android/app/google-services.json"
-        }
-      },
-      "ios": {
-        "default": {
-          "projectId": "pollo-2025-f4d01",
-          "appId": "1:638748047552:ios:92f64e5ea23f8bc59f1525",
-          "uploadDebugSymbols": false,
-          "fileOutput": "ios/Runner/GoogleService-Info.plist"
-        }
-      },
-      "macos": {
-        "default": {
-          "projectId": "pollo-2025-f4d01",
-          "appId": "1:638748047552:ios:92f64e5ea23f8bc59f1525",
-          "uploadDebugSymbols": false,
-          "fileOutput": "macos/Runner/GoogleService-Info.plist"
-        }
-      },
-      "dart": {
-        "lib/firebase_options.dart": {
-          "projectId": "pollo-2025-f4d01",
-          "configurations": {
-            "android": "1:638748047552:android:4d9fcd09ae0256229f1525",
-            "ios": "1:638748047552:ios:92f64e5ea23f8bc59f1525",
-            "macos": "1:638748047552:ios:92f64e5ea23f8bc59f1525",
-            "web": "1:638748047552:web:9424372c52e21df59f1525",
-            "windows": "1:638748047552:web:f919d30d1e4d3e7a9f1525"
+    "hosting": {
+      "public": "build/web",
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**"
+      ]
+    },
+    "flutter": {
+      "platforms": {
+        "android": {
+          "default": {
+            "projectId": "pollo-2025-f4d01",
+            "appId": "1:638748047552:android:e8ba811c296f59259f1525",
+            "fileOutput": "android/app/google-services.json"
+          }
+        },
+        "ios": {
+          "default": {
+            "projectId": "pollo-2025-f4d01",
+            "appId": "1:638748047552:ios:e53cd8eb1ec063039f1525",
+            "uploadDebugSymbols": false,
+            "fileOutput": "ios/Runner/GoogleService-Info.plist"
+          }
+        },
+        "macos": {
+          "default": {
+            "projectId": "pollo-2025-f4d01",
+            "appId": "1:638748047552:ios:e53cd8eb1ec063039f1525",
+            "uploadDebugSymbols": false,
+            "fileOutput": "macos/Runner/GoogleService-Info.plist"
+          }
+        },
+        "dart": {
+          "lib/firebase_options.dart": {
+            "projectId": "pollo-2025-f4d01",
+            "configurations": {
+              "android": "1:638748047552:android:e8ba811c296f59259f1525",
+              "ios": "1:638748047552:ios:e53cd8eb1ec063039f1525",
+              "macos": "1:638748047552:ios:e53cd8eb1ec063039f1525",
+              "web": "1:638748047552:web:5fe16ca2c351a4d59f1525",
+              "windows": "1:638748047552:web:373dff9dff274b129f1525"
+            }
           }
         }
       }
     }
-  },
-
-  "hosting": {
-    "source": "build/web",
-    "ignore": [
-      "firebase.json",
-      "**/.*",
-      "**/node_modules/**"
-    ],
-    "frameworksBackend": null
   }
-}
