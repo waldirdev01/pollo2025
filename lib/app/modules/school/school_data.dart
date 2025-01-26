@@ -3,10 +3,10 @@ import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pw;
-import 'package:printing/printing.dart';
-import 'package:provider/provider.dart';
 import 'package:pollo2025/app/core/widgets/custom_app_bar.dart';
 import 'package:pollo2025/app/providers/student_provider.dart';
+import 'package:printing/printing.dart';
+import 'package:provider/provider.dart';
 
 import '../../core/widgets/custom_home_card.dart';
 import '../../models/school.dart';
@@ -79,7 +79,6 @@ class _SchoolDataState extends State<SchoolData> {
 
   @override
   Widget build(BuildContext context) {
-    print(widget.school.name);
     return Scaffold(
       appBar: const CustomAppBar(
         title: 'Quantidades de estudantes',

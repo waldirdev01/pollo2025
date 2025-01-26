@@ -358,10 +358,15 @@ class StudentProvider extends ChangeNotifier {
           .where('authorized', isEqualTo: false)
           .orderBy('createdAt')
           .get();
-      _students = snapshot.docs.map((e) => Student.fromJson(e.data())).toList();
 
+      _students = snapshot.docs.map((e) => Student.fromJson(e.data())).toList();
       return _students;
     } on FirebaseException catch (e) {
+      // Imprime o erro completo no console
+      print("FirebaseException: ${e.message}");
+      print("Error Code: ${e.code}");
+
+      // Re-throw do erro
       throw e.message!;
     }
   }
@@ -449,10 +454,7 @@ class StudentProvider extends ChangeNotifier {
           .get();
       _students = snapshot.docs.map((e) => Student.fromJson(e.data())).toList();
       _students.sort((a, b) => a.name.compareTo(b.name));
-      for (var std in _students) {
-        print('${std.name.toUpperCase()}, ${std.ieducar}, ${std.cpf}');
-      }
-      print('TOTAL DE ESTUDANTES: ${_students.length}');
+      // Removed unused variable 'std'
       return _students;
     } on FirebaseException catch (e) {
       throw e.message!;
@@ -506,15 +508,14 @@ class StudentProvider extends ChangeNotifier {
           .where((student) => cleanCpf(student.cpf).length != 11)
           .toList();
 
-      for (var student in filteredStudents) {
-        // Limpar o CPF antes de imprimir
-        // String cleanedCpf = cleanCpf(student.cpf);
-        print(student.cpf);
+      // for (var student in filteredStudents) {
+      // Limpar o CPF antes de imprimir
+      // String cleanedCpf = cleanCpf(student.cpf);
 
-        // Atualizar o CPF limpo no Firestore
-        // student.cpf = '000000000${cleanedCpf}';
-        //await updateStudent(student); // Atualizar no Firestore
-      }
+      // Atualizar o CPF limpo no Firestore
+      // student.cpf = '000000000${cleanedCpf}';
+      //await updateStudent(student); // Atualizar no Firestore
+      // }
 
       return filteredStudents;
     } on FirebaseException catch (e) {

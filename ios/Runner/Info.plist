@@ -45,5 +45,11 @@
 	<true/>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
-</dict>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Precisamos da sua localização para monitorar o itinerário.</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>Precisamos da sua localização mesmo quando o app estiver em segundo plano.</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Permitir acesso à localização mesmo quando o app estiver fechado.</string>
+	</dict>
 </plist>

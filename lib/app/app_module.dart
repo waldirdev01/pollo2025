@@ -1,17 +1,18 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:pollo2025/app/providers/app_user_provider.dart';
 import 'package:pollo2025/app/providers/e_c_student_provider.dart';
 import 'package:pollo2025/app/providers/itinerary_provider.dart';
 import 'package:pollo2025/app/providers/school_provider.dart';
 import 'package:pollo2025/app/providers/student_provider.dart';
+import 'package:provider/provider.dart';
 
 import 'app_widget.dart';
 import 'providers/app_auth_provider.dart';
 import 'providers/e_c_activity_provider.dart';
 import 'providers/for_payment_provider.dart';
+import 'providers/gps_provider.dart';
 
 class AppModule extends StatelessWidget {
   const AppModule({super.key});
@@ -49,6 +50,7 @@ class AppModule extends StatelessWidget {
         ChangeNotifierProvider(
             create: (context) =>
                 ForPaymentProvider(firebaseFirestore: context.read())),
+        ChangeNotifierProvider(create: (_) => GPSProvider()),
       ],
       child: const AppWidget(),
     );

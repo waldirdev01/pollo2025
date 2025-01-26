@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:pollo2025/app/core/ui/ap_ui_config.dart';
 import 'package:pollo2025/app/core/widgets/custom_app_bar.dart';
 import 'package:pollo2025/app/modules/itinerary/itinerary_details_page.dart';
 import 'package:pollo2025/app/providers/app_auth_provider.dart';
 import 'package:pollo2025/app/providers/itinerary_provider.dart';
+import 'package:provider/provider.dart';
+
 import '../../../models/app_user.dart';
 import 'ec_monitor_page.dart';
 
@@ -63,7 +64,7 @@ class MonitorHomePage extends StatelessWidget {
                         onTap: () {
                           Navigator.of(context).push(MaterialPageRoute(
                               builder: (context) =>
-                                  ItineraryDetaislPage(itinerary: itinerary)));
+                                  ItineraryDetailslPage(itinerary: itinerary)));
                         },
                       ),
                     );

@@ -36,15 +36,12 @@ class ForPaymentProvider extends ChangeNotifier {
     required double valor,
   }) async {
     try {
-      print('Gerando pagamentos para o mês de ${monthYear.month}');
-
       // 1. Carregar todos os estudantes de uma vez
       final studentsSnapshot =
           await _firebaseFirestore.collection('students').get();
       _students = studentsSnapshot.docs
           .map((doc) => Student.fromJson(doc.data()))
           .toList();
-      print('Total de estudantes carregados: ${_students.length}');
 
       // 2. Carregar itinerários relacionados ao contrato
       final itinerariesSnapshot = await _firebaseFirestore
@@ -55,8 +52,6 @@ class ForPaymentProvider extends ChangeNotifier {
       List<Itinerary> itineraries = itinerariesSnapshot.docs
           .map((doc) => Itinerary.fromJson(doc.data()))
           .toList();
-
-      print('Total de itinerários carregados: ${itineraries.length}');
 
       // 3. Processar cada itinerário separando os estudantes carregados
       for (var itinerary in itineraries) {

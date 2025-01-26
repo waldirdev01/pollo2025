@@ -1,15 +1,16 @@
 // ignore_for_file: must_be_immutable, use_build_context_synchronously
 
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:pollo2025/app/core/constants/constants.dart';
 import 'package:pollo2025/app/models/app_user.dart';
 import 'package:pollo2025/app/models/itinerary.dart';
 import 'package:pollo2025/app/models/school.dart';
+import 'package:pollo2025/app/modules/itinerary/itinerary_details_page.dart';
 import 'package:pollo2025/app/providers/app_auth_provider.dart';
 import 'package:pollo2025/app/providers/itinerary_provider.dart';
+import 'package:provider/provider.dart';
 
-import '../itinerary_details_page.dart';
+import '../locations/itinerary_map_page.dart';
 
 class ItineraryCardList extends StatelessWidget {
   const ItineraryCardList({super.key, required this.itinerary, this.school});
@@ -46,12 +47,21 @@ class ItineraryCardList extends StatelessWidget {
                 IconButton(
                   onPressed: () {
                     Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => ItineraryDetaislPage(
+                        builder: (context) => ItineraryDetailslPage(
                               itinerary: itinerary,
                               school: school,
                             )));
                   },
                   icon: const Icon(Icons.home),
+                ),
+                IconButton(
+                  onPressed: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) =>
+                          ItineraryMapPage(itineraryId: itinerary.id!),
+                    ));
+                  },
+                  icon: const Icon(Icons.map, color: Colors.blue),
                 ),
                 school == null
                     ? const SizedBox.shrink()
@@ -109,7 +119,7 @@ class ItineraryCardList extends StatelessWidget {
                 IconButton(
                   onPressed: () {
                     Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => ItineraryDetaislPage(
+                        builder: (context) => ItineraryCardList(
                               itinerary: itinerary,
                               school: school,
                             )));

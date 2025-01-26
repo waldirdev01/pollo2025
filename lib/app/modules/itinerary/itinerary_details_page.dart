@@ -1,10 +1,7 @@
-// ignore_for_file: must_be_immutable
-
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:pollo2025/app/core/constants/constants.dart';
-
-// ignore: unused_import
+import 'package:pollo2025/app/modules/itinerary/widgets/monitoring_buttons.dart';
+import 'package:provider/provider.dart';
 
 import '../../core/widgets/custom_app_bar.dart';
 import '../../models/app_user.dart';
@@ -20,8 +17,8 @@ import '../student/student_details_page.dart';
 import '../student/students_add_itineray_for_school_list.dart';
 import '../student/widgets/student_card.dart';
 
-class ItineraryDetaislPage extends StatelessWidget {
-  ItineraryDetaislPage({super.key, required this.itinerary, this.school});
+class ItineraryDetailslPage extends StatelessWidget {
+  ItineraryDetailslPage({super.key, required this.itinerary, this.school});
   Itinerary itinerary;
   final School? school;
 
@@ -220,59 +217,57 @@ class ItineraryDetaislPage extends StatelessWidget {
                   studentsSelecteds = studentProvider.students
                       .where((student) => student.authorized == true)
                       .toList();
-                  for (var student in studentsSelecteds) {
-                    print(
-                        'nome: ${student.name}, lenth: ${student.cpf.length}, cpf: ${student.cpf}');
-                  }
 
                   if (studentsSelecteds.isEmpty) {
-                    return Center(
-                      child: Column(
-                        children: [
-                          Text('Código: ${itinerary.code}',
-                              style: const TextStyle(
-                                  fontSize: 18, fontWeight: FontWeight.bold)),
-                          Consumer2<ItineraryProvider, AppUserProvider>(builder:
-                              (context, itineraryProvider, appUserProvider,
-                                  child) {
-                            appUserProvider.getMonitora(itinerary.appUserId);
-
-                            var monitora = appUserProvider.typeUser;
-                            if (monitora == null) {
-                              return const Text(
-                                'Monitora: Não cadastrada',
-                                style: TextStyle(fontSize: 18),
-                              );
-                            }
-                            return Text('Monitora: ${monitora.name},',
-                                style: const TextStyle(fontSize: 18));
-                          }),
-                          Text('Motorista: ${itinerary.driverName}',
-                              style: const TextStyle(fontSize: 18)),
-                          Text('Placa do veículo: ${itinerary.vehiclePlate}',
-                              style: const TextStyle(fontSize: 18)),
-                          Text('Itinerário: ${itinerary.trajectory}',
-                              style: const TextStyle(fontSize: 18)),
-                          Text('Tipo: ${itinerary.type.value}',
-                              style: const TextStyle(fontSize: 18)),
-                          Text('Vagas disponíveis: $vacances',
-                              style: const TextStyle(
-                                  fontSize: 18, fontWeight: FontWeight.bold)),
-                          Text(
-                            vacances == 0
-                                ? 'Nenhum estudante cadastrado.'
-                                : 'Nenhum estudante aprovado.',
+                    return Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        MonitoringButtons(itineraryId: itinerary.id!),
+                        Text('Código: ${itinerary.code}',
                             style: const TextStyle(
-                                fontSize: 18, fontWeight: FontWeight.bold),
-                          ),
-                        ],
-                      ),
+                                fontSize: 18, fontWeight: FontWeight.bold)),
+                        Consumer2<ItineraryProvider, AppUserProvider>(builder:
+                            (context, itineraryProvider, appUserProvider,
+                                child) {
+                          appUserProvider.getMonitora(itinerary.appUserId);
+
+                          var monitora = appUserProvider.typeUser;
+                          if (monitora == null) {
+                            return const Text(
+                              'Monitora: Não cadastrada',
+                              style: TextStyle(fontSize: 18),
+                            );
+                          }
+                          return Text('Monitora: ${monitora.name},',
+                              style: const TextStyle(fontSize: 18));
+                        }),
+                        Text('Motorista: ${itinerary.driverName}',
+                            style: const TextStyle(fontSize: 18)),
+                        Text('Placa do veículo: ${itinerary.vehiclePlate}',
+                            style: const TextStyle(fontSize: 18)),
+                        Text('Itinerário: ${itinerary.trajectory}',
+                            style: const TextStyle(fontSize: 18)),
+                        Text('Tipo: ${itinerary.type.value}',
+                            style: const TextStyle(fontSize: 18)),
+                        Text('Vagas disponíveis: $vacances',
+                            style: const TextStyle(
+                                fontSize: 18, fontWeight: FontWeight.bold)),
+                        Text(
+                          vacances == 0
+                              ? 'Nenhum estudante cadastrado.'
+                              : 'Nenhum estudante aprovado.',
+                          style: const TextStyle(
+                              fontSize: 18, fontWeight: FontWeight.bold),
+                        ),
+                      ],
                     );
                   }
                   return Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
+                      MonitoringButtons(itineraryId: itinerary.id!),
                       Text('Código: ${itinerary.code}',
                           style: const TextStyle(
                               fontSize: 18, fontWeight: FontWeight.bold)),
