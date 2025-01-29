@@ -1,8 +1,7 @@
 import 'dart:async';
 import 'dart:io';
 
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:path_provider/path_provider.dart';
 
@@ -18,6 +17,7 @@ class GPSProvider with ChangeNotifier {
 
   final GPSDatabase _database = GPSDatabase();
 
+  /// Verifica permissões de localização
   Future<bool> _checkPermissions() async {
     LocationPermission permission = await Geolocator.checkPermission();
 
@@ -35,6 +35,7 @@ class GPSProvider with ChangeNotifier {
     return true;
   }
 
+  /// Inicia o monitoramento do GPS
   Future<void> startMonitoring() async {
     final hasPermission = await _checkPermissions();
     if (!hasPermission) {
@@ -47,20 +48,28 @@ class GPSProvider with ChangeNotifier {
     notifyListeners();
 
     _positionStream = Geolocator.getPositionStream(
-      locationSettings: const LocationSettings(accuracy: LocationAccuracy.high),
-    ).listen((Position position) async {
-      final location = {
-        'latitude': position.latitude,
-        'longitude': position.longitude,
-        'timestamp': position.timestamp.toIso8601String(),
-      };
-      print("ponto: lat: ${position.latitude}, long: ${position.longitude}");
-      _locations.add(location);
-      notifyListeners();
+      locationSettings: const LocationSettings(
+        accuracy: LocationAccuracy.high,
+        distanceFilter: 20,
+      ),
+    ).listen(
+      (Position position) async {
+        final location = {
+          'latitude': position.latitude,
+          'longitude': position.longitude,
+          'timestamp': position.timestamp.toIso8601String(),
+          'date': DateTime.now().toString().split(" ")[0],
+        };
 
-      // Salva no SQLite
-      await _database.insertLocation(location);
-    });
+        await _database.insertLocation(location);
+
+        _locations.add(location);
+        notifyListeners();
+      },
+      onError: (error) {
+        print("Erro ao monitorar: $error");
+      },
+    );
   }
 
   void stopMonitoring() {
@@ -70,89 +79,41 @@ class GPSProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> uploadLocations(String itineraryId) async {
-    final localLocations = await _database.getLocations();
+  /// Gera CSV de localizações
+  Future<void> generateCSV(String itineraryId) async {
+    final locations = await _database.getLocations();
 
-    // Verifica se existem dados a enviar
-    if (localLocations.isEmpty) {
-      return;
+    if (locations.isEmpty) return;
+
+    String csvContent = "latitude,longitude,timestamp,itinerary_id\n";
+
+    for (var location in locations) {
+      final timestamp = DateTime.parse(location['timestamp']).toLocal();
+      csvContent +=
+          "${location['latitude']},${location['longitude']},${timestamp.toIso8601String()},$itineraryId\n";
     }
 
-    try {
-      final batch = FirebaseFirestore.instance.batch();
-      final ref = FirebaseFirestore.instance
-          .collection('itineraries')
-          .doc(itineraryId)
-          .collection('locations');
-
-      Map<String, dynamic>? previousLocation;
-
-      for (final location in localLocations) {
-        // Calcula a distância entre pontos
-        if (previousLocation != null) {
-          final distance = Geolocator.distanceBetween(
-            previousLocation['latitude'] as double,
-            previousLocation['longitude'] as double,
-            location['latitude'] as double,
-            location['longitude'] as double,
-          );
-
-          if (distance > 10000) {
-            print("Ponto ignorado por distância: $location");
-            continue;
-          }
-        }
-
-        final docRef = ref.doc();
-        batch.set(docRef, location);
-        previousLocation = location;
-      }
-
-      // Envia o batch para o Firebase
-      await batch.commit();
-
-      // Limpa os dados locais após o envio bem-sucedido
-      await _database.clearLocations();
-      _locations.clear();
-      notifyListeners();
-    } catch (e) {
-      throw Exception('Erro ao enviar dados: $e');
-    }
+    final directory = await getApplicationDocumentsDirectory();
+    final filePath = "${directory.path}/locations.csv";
+    await File(filePath).writeAsString(csvContent);
   }
 
-  Future<void> generateCSV() async {
-    // Obtém as localizações salvas no banco
-    final localLocations = await _database.getLocations();
+  /// Gera CSV de stops
+  Future<void> generateStopsCSV(String itineraryId) async {
+    final stops = await _database.getStops(itineraryId);
 
-    // Verifica se existem dados
-    if (localLocations.isEmpty) {
-      print("Nenhuma localização disponível para gerar o CSV.");
-      return;
+    if (stops.isEmpty) return;
+
+    String csvContent =
+        "title,latitude,longitude,time,shift,direction,itinerary_id\n";
+
+    for (var stop in stops) {
+      csvContent +=
+          "${stop['title']},${stop['latitude']},${stop['longitude']},${stop['time']},${stop['shift']},${stop['direction']},$itineraryId\n";
     }
 
-    try {
-      // Cria o cabeçalho do CSV
-      String csvContent = "latitude,longitude,timestamp\n";
-
-      // Adiciona cada linha
-      for (var location in localLocations) {
-        final lat = location['latitude'];
-        final lng = location['longitude'];
-        final timestamp = location['timestamp'];
-        csvContent += "$lat,$lng,$timestamp\n";
-      }
-
-      // Obtém o diretório para salvar o arquivo
-      final directory = await getApplicationDocumentsDirectory();
-      final filePath = "${directory.path}/locations.csv";
-
-      // Salva o arquivo
-      final file = File(filePath);
-      await file.writeAsString(csvContent);
-
-      print("CSV criado com sucesso em: $filePath");
-    } catch (e) {
-      print("Erro ao criar CSV: $e");
-    }
+    final directory = await getApplicationDocumentsDirectory();
+    final filePath = "${directory.path}/stops.csv";
+    await File(filePath).writeAsString(csvContent);
   }
 }

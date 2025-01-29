@@ -1,4 +1,5 @@
 abstract class Constants {
+  static const String kDEBUGPAGE = 'debug';
   static const String kCOMPANYANALITICS = 'TRANFER ANALITICS';
   static const String kCOMPANYNAME = 'POLLO';
   static const String kDATAHOME = 'DataHome';

@@ -150,42 +150,61 @@ class _SchoolsForAttendanceState extends State<SchoolsForAttendance> {
                 },
               ).toList();
               return Card(
-                shape: const RoundedRectangleBorder(
-                    borderRadius:
-                        BorderRadius.vertical(top: Radius.elliptical(10, 20))),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(15),
+                ),
                 color: Theme.of(context).primaryColor,
                 child: Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
                   child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Text(
-                        widget.schools[index].name,
-                        style: const TextStyle(
+                      // Nome da escola com estilo mais destacado
+                      Expanded(
+                        child: Text(
+                          widget.schools[index].name,
+                          style: const TextStyle(
                             color: Colors.white,
                             fontSize: 20,
-                            fontWeight: FontWeight.bold),
-                      ),
-                      Expanded(
-                        child: TextButton(
-                          onPressed: () {
-                            _pdfFaltosos(widget.month, studentsFaltosos,
-                                widget.schools[index]);
-                          },
-                          child: const Text(
-                            'Infrequentes',
-                            style: TextStyle(color: Colors.white),
+                            fontWeight: FontWeight.w600,
                           ),
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 1,
                         ),
                       ),
+                      const SizedBox(width: 12), // Espaço entre os elementos
+
+                      // Botão "Infrequentes" com estilo de botão elevado
+                      ElevatedButton.icon(
+                        onPressed: () {
+                          _pdfFaltosos(widget.month, studentsFaltosos,
+                              widget.schools[index]);
+                        },
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor:
+                              Colors.white.withAlpha((0.2 * 255).toInt()),
+                          // Botão mais integrado ao card
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10)),
+                        ),
+                        icon: const Icon(Icons.warning,
+                            color: Colors.pink, size: 18),
+                        label: const Text(
+                          'Infrequentes',
+                          style: TextStyle(color: Colors.white, fontSize: 16),
+                        ),
+                      ),
+                      const SizedBox(width: 12),
+
+                      // Ícone de impressão, maior e mais espaçado
                       IconButton(
                         onPressed: () {
                           _previewPdf(widget.month, studentsBySchool,
                               widget.schools[index]);
                         },
-                        icon: const Icon(
-                          Icons.print,
-                          color: Colors.white,
-                        ),
+                        icon: const Icon(Icons.print,
+                            color: Colors.white, size: 26),
                       ),
                     ],
                   ),

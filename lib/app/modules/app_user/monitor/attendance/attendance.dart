@@ -2,13 +2,13 @@
 
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:provider/provider.dart';
 import 'package:pollo2025/app/core/constants/constants.dart';
 import 'package:pollo2025/app/core/ui/ap_ui_config.dart';
 import 'package:pollo2025/app/modules/app_user/monitor/attendance/attendance_edit_page.dart';
 import 'package:pollo2025/app/modules/app_user/monitor/attendance/reposition_page.dart';
 import 'package:pollo2025/app/modules/home_page.dart';
 import 'package:pollo2025/app/providers/app_auth_provider.dart';
+import 'package:provider/provider.dart';
 
 import '../../../../models/app_user.dart';
 import '../../../../models/attendance.dart';
@@ -206,6 +206,7 @@ class _AttendancePageState extends State<AttendancePage> {
     schoolProvider.getSchools();
     final List<Student> students = widget.students;
     final List<Student> studentsBySchool = [];
+    print(students);
     for (final student in students) {
       final schoolId = student.schoolId;
       final School defaultSchool = School(

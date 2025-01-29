@@ -10,8 +10,6 @@ import 'package:pollo2025/app/providers/app_auth_provider.dart';
 import 'package:pollo2025/app/providers/itinerary_provider.dart';
 import 'package:provider/provider.dart';
 
-import '../locations/itinerary_map_page.dart';
-
 class ItineraryCardList extends StatelessWidget {
   const ItineraryCardList({super.key, required this.itinerary, this.school});
 
@@ -53,15 +51,6 @@ class ItineraryCardList extends StatelessWidget {
                             )));
                   },
                   icon: const Icon(Icons.home),
-                ),
-                IconButton(
-                  onPressed: () {
-                    Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) =>
-                          ItineraryMapPage(itineraryId: itinerary.id!),
-                    ));
-                  },
-                  icon: const Icon(Icons.map, color: Colors.blue),
                 ),
                 school == null
                     ? const SizedBox.shrink()
@@ -119,7 +108,7 @@ class ItineraryCardList extends StatelessWidget {
                 IconButton(
                   onPressed: () {
                     Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => ItineraryCardList(
+                        builder: (context) => ItineraryDetailslPage(
                               itinerary: itinerary,
                               school: school,
                             )));

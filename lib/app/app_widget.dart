@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:pollo2025/app/core/constants/constants.dart';
 import 'package:pollo2025/app/core/ui/ap_ui_config.dart';
+import 'package:pollo2025/app/database/debug_map.dart';
 import 'package:pollo2025/app/modules/app_user/admin/data/data_company.dart';
 import 'package:pollo2025/app/modules/app_user/admin/manager_user_type.dart';
 import 'package:pollo2025/app/modules/app_user/monitor/monitor_for_ec_list.dart';
@@ -103,6 +104,7 @@ class _AppWidgetState extends State<AppWidget> {
         Constants.kUSERMONITORHOMEPAGEROUTE: (context) =>
             const MonitorHomePage(),
         Constants.kUSERREGISTERROUTE: (context) => const RegisterPage(),
+        Constants.kDEBUGPAGE: (context) => const DebugPage(),
       },
     );
   }

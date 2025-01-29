@@ -42,17 +42,17 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions web = FirebaseOptions(
     apiKey: 'AIzaSyCMcuEVQqNTIaRbhwatYddXtqc_0hTV15E',
-    appId: '1:638748047552:web:5fe16ca2c351a4d59f1525',
+    appId: '1:638748047552:web:e4a547f76087055c9f1525',
     messagingSenderId: '638748047552',
     projectId: 'pollo-2025-f4d01',
     authDomain: 'pollo-2025-f4d01.firebaseapp.com',
     storageBucket: 'pollo-2025-f4d01.firebasestorage.app',
-    measurementId: 'G-QBY4L8L5W2',
+    measurementId: 'G-9S7QDR9CVM',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyDfah7ygplX_Kr0uL_ziVR0hYd9oV-mYG0',
-    appId: '1:638748047552:android:e8ba811c296f59259f1525',
+    appId: '1:638748047552:android:3ec5602370d3379f9f1525',
     messagingSenderId: '638748047552',
     projectId: 'pollo-2025-f4d01',
     storageBucket: 'pollo-2025-f4d01.firebasestorage.app',
@@ -60,7 +60,7 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions ios = FirebaseOptions(
     apiKey: 'AIzaSyBguvpJxJWXn3l1fWtpW9ssIJsIj2G9d2U',
-    appId: '1:638748047552:ios:e53cd8eb1ec063039f1525',
+    appId: '1:638748047552:ios:59caca69f5fe4faa9f1525',
     messagingSenderId: '638748047552',
     projectId: 'pollo-2025-f4d01',
     storageBucket: 'pollo-2025-f4d01.firebasestorage.app',
@@ -69,7 +69,7 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions macos = FirebaseOptions(
     apiKey: 'AIzaSyBguvpJxJWXn3l1fWtpW9ssIJsIj2G9d2U',
-    appId: '1:638748047552:ios:e53cd8eb1ec063039f1525',
+    appId: '1:638748047552:ios:59caca69f5fe4faa9f1525',
     messagingSenderId: '638748047552',
     projectId: 'pollo-2025-f4d01',
     storageBucket: 'pollo-2025-f4d01.firebasestorage.app',
@@ -78,11 +78,12 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions windows = FirebaseOptions(
     apiKey: 'AIzaSyCMcuEVQqNTIaRbhwatYddXtqc_0hTV15E',
-    appId: '1:638748047552:web:373dff9dff274b129f1525',
+    appId: '1:638748047552:web:c1b03b688c3ca6db9f1525',
     messagingSenderId: '638748047552',
     projectId: 'pollo-2025-f4d01',
     authDomain: 'pollo-2025-f4d01.firebaseapp.com',
     storageBucket: 'pollo-2025-f4d01.firebasestorage.app',
-    measurementId: 'G-7F014GB580',
+    measurementId: 'G-GYFCEYXPFW',
   );
+
 }

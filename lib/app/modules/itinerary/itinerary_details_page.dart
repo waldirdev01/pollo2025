@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:pollo2025/app/core/constants/constants.dart';
-import 'package:pollo2025/app/modules/itinerary/widgets/monitoring_buttons.dart';
 import 'package:provider/provider.dart';
 
 import '../../core/widgets/custom_app_bar.dart';
+import '../../core/widgets/custom_drawer.dart';
 import '../../models/app_user.dart';
 import '../../models/itinerary.dart';
 import '../../models/school.dart';
@@ -31,6 +31,9 @@ class ItineraryDetailslPage extends StatelessWidget {
     final userType = context.read<AppAuthProvider>().appUser!.type;
 
     return Scaffold(
+        drawer: userType == UserType.monitor
+            ? CustomDrawer(itineraryId: itinerary.id!)
+            : null,
         appBar: CustomAppBar(
             title: 'Detalhes do itinerário',
             actions: userType == UserType.admin && school != null
@@ -223,7 +226,6 @@ class ItineraryDetailslPage extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        MonitoringButtons(itineraryId: itinerary.id!),
                         Text('Código: ${itinerary.code}',
                             style: const TextStyle(
                                 fontSize: 18, fontWeight: FontWeight.bold)),
@@ -267,7 +269,6 @@ class ItineraryDetailslPage extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      MonitoringButtons(itineraryId: itinerary.id!),
                       Text('Código: ${itinerary.code}',
                           style: const TextStyle(
                               fontSize: 18, fontWeight: FontWeight.bold)),

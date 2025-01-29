@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:pollo2025/app/core/constants/constants.dart';
 import 'package:pollo2025/app/core/widgets/custom_app_bar.dart';
 import 'package:pollo2025/app/models/app_user.dart';
+import 'package:provider/provider.dart';
 
 import '../core/widgets/custom_home_card.dart';
 import '../providers/app_auth_provider.dart';

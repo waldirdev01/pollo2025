@@ -60,6 +60,16 @@ class AppUiConfig {
       color: Color.fromARGB(255, 241, 242, 240),
     );
   }
+
+  static SnackBarThemeData snackBarThemeCustom() {
+    return SnackBarThemeData(
+      backgroundColor: themeCustom.primaryColor,
+      contentTextStyle: const TextStyle(
+        color: Colors.white,
+        fontSize: 16,
+      ),
+    );
+  }
 }
 
 getColorByAbsences(int absences) {
