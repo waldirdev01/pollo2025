@@ -45,7 +45,7 @@ class ItineraryCardList extends StatelessWidget {
                 IconButton(
                   onPressed: () {
                     Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => ItineraryDetailslPage(
+                        builder: (context) => ItineraryDetailsPage(
                               itinerary: itinerary,
                               school: school,
                             )));
@@ -108,7 +108,7 @@ class ItineraryCardList extends StatelessWidget {
                 IconButton(
                   onPressed: () {
                     Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => ItineraryDetailslPage(
+                        builder: (context) => ItineraryDetailsPage(
                               itinerary: itinerary,
                               school: school,
                             )));

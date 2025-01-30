@@ -50,6 +50,7 @@ class _AppWidgetState extends State<AppWidget> {
       debugShowCheckedModeBanner: false,
       title: Constants.kCOMPANYNAME,
       theme: AppUiConfig.themeCustom,
+      locale: Locale('pt', 'BR'),
       localizationsDelegates: const [
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
@@ -57,6 +58,7 @@ class _AppWidgetState extends State<AppWidget> {
       ],
       supportedLocales: const [
         Locale('pt', 'BR'),
+        Locale('en', 'US'),
       ],
       routes: {
         '/': (context) => const SplashPage(),

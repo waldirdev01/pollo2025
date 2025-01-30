@@ -17,9 +17,9 @@ import '../student/student_details_page.dart';
 import '../student/students_add_itineray_for_school_list.dart';
 import '../student/widgets/student_card.dart';
 
-class ItineraryDetailslPage extends StatelessWidget {
-  ItineraryDetailslPage({super.key, required this.itinerary, this.school});
-  Itinerary itinerary;
+class ItineraryDetailsPage extends StatelessWidget {
+  const ItineraryDetailsPage({super.key, required this.itinerary, this.school});
+  final Itinerary itinerary;
   final School? school;
 
   @override

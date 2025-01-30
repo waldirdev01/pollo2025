@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:pollo2025/app/models/app_user.dart';
 import 'package:pollo2025/app/models/student.dart';
 import 'package:pollo2025/app/providers/app_auth_provider.dart';
+import 'package:provider/provider.dart';
 import 'package:validatorless/validatorless.dart';
 
 import '../../core/ui/ap_ui_config.dart';
@@ -57,13 +57,16 @@ class _StudentEditFormState extends State<StudentEditForm> {
           key: _formKey,
           child: Column(
             children: [
-              AppField(
-                initialValue: student.name,
-                keyBoadType: TextInputType.text,
-                label: 'Nome',
-                validator: Validatorless.required('Por favor, insira o nome'),
-                onSaved: (value) => student.name = value!.toUpperCase(),
-              ),
+              appUser?.type == UserType.monitor
+                  ? SizedBox.shrink()
+                  : AppField(
+                      initialValue: student.name,
+                      keyBoadType: TextInputType.text,
+                      label: 'Nome',
+                      validator:
+                          Validatorless.required('Por favor, insira o nome'),
+                      onSaved: (value) => student.name = value!.toUpperCase(),
+                    ),
               const SizedBox(height: 10),
               AppField(
                 initialValue: student.ieducar,

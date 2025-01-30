@@ -10,8 +10,16 @@
         android:label="pollo2025"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher"
+        android:localeConfig="@xml/locales_config"
         android:requestLegacyExternalStorage="true"
         android:enableOnBackInvokedCallback="true">
+    
+        android:label="pollo2025"
+        android:name="${applicationName}"
+        android:icon="@mipmap/ic_launcher"
+        android:requestLegacyExternalStorage="true"
+        android:enableOnBackInvokedCallback="true"
+        android:localeConfig="@xml/locales_config"
 
         <!-- Metadata para plugins Flutter -->
         <meta-data

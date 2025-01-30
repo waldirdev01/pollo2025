@@ -46,8 +46,9 @@ class _AddOrEditStopPageState extends State<AddOrEditStopPage> {
       permission = await Geolocator.requestPermission();
       if (permission == LocationPermission.denied) {
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            content: Text(
+          SnackBar(
+            backgroundColor: AppUiConfig.themeCustom.primaryColor,
+            content: const Text(
                 'Permissão de localização negada. Ative nas configurações.'),
           ),
         );
@@ -57,7 +58,8 @@ class _AddOrEditStopPageState extends State<AddOrEditStopPage> {
 
     if (permission == LocationPermission.deniedForever) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
+        SnackBar(
+          backgroundColor: AppUiConfig.themeCustom.primaryColor,
           content: Text('Permissão de localização negada permanentemente.'),
         ),
       );
@@ -102,7 +104,9 @@ class _AddOrEditStopPageState extends State<AddOrEditStopPage> {
         // Adiciona um novo stop
         await db.insertStop(stop);
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Ponto salvo com sucesso!')),
+          SnackBar(
+              backgroundColor: AppUiConfig.themeCustom.primaryColor,
+              content: Text('Ponto salvo com sucesso!')),
         );
       } else {
         // Atualiza um stop existente
@@ -117,6 +121,7 @@ class _AddOrEditStopPageState extends State<AddOrEditStopPage> {
     } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
+          backgroundColor: AppUiConfig.themeCustom.primaryColor,
           content: Text('Erro ao salvar o ponto: $e'),
         ),
       );

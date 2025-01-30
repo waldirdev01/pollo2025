@@ -64,7 +64,7 @@ class MonitorHomePage extends StatelessWidget {
                         onTap: () {
                           Navigator.of(context).push(MaterialPageRoute(
                               builder: (context) =>
-                                  ItineraryDetailslPage(itinerary: itinerary)));
+                                  ItineraryDetailsPage(itinerary: itinerary)));
                         },
                       ),
                     );
